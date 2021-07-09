@@ -1,3 +1,5 @@
 module.exports.createPeerServerListeners = (peerServer) => {
-  peerServer.on("connection", (client) => {});
+  peerServer.on("connection", (client) => {
+    console.log(client.id);
+  });
 };
