@@ -131,7 +131,7 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     peers = peers.filter((peer) => peer.socketId !== socket.id);
-    rooms = rooms.filter((room) => room.socketId !== socket.socketId);
+    rooms = rooms.filter((room) => room.socketId !== socket.id);
 
     io.sockets.emit("broadcast", {
       event: broadcastingEvents.ACTIVE_USERS,
