@@ -131,10 +131,16 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     peers = peers.filter((peer) => peer.socketId !== socket.id);
+    rooms = rooms.filter((room) => room.socketId !== socket.socketId);
 
     io.sockets.emit("broadcast", {
       event: broadcastingEvents.ACTIVE_USERS,
       activeUsers: peers,
+    });
+
+    io.sockets.emit("broadcast", {
+      event: broadcastingEvents.GROUP_CALL_ROOMS,
+      rooms,
     });
   });
 });
